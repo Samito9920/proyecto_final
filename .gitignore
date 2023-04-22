@@ -1,0 +1,8 @@
+#Eliminar archivos provenientes de macos
+.DS_store
+
+#Eliminar archivo de mongo
+.env
+
+#Eliminar archivo de visual
+.vscode
