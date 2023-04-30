@@ -5,7 +5,7 @@ const uniqueValidator = require('mongoose-unique-validator')
 
 const carrito = new Schema({
    fecha: {
-    type: Date,
+    type: String,
     default: Date.now,
     required: true
     },
@@ -20,12 +20,12 @@ const carrito = new Schema({
     usuario: [
         {
             user: {
-                type: mongoose.Schema.Types.ObjectId, ref: 'users'
+                type: mongoose.Schema.Types.ObjectId, ref: 'user'
             }
         }
     ],
     total: {
-        type: Decimal128,
+        type: Number,
         required: true
     }
 

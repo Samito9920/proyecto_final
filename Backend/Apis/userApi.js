@@ -2,7 +2,8 @@ const express = require('express')
 const router = express.Router()
 const userModel = require('../model/user')
 const userService = require('../services/user');
-
+const carritoController = require('../controllers/carrito')
+const {getCarritoByUsuarioId} = carritoController
 
 const UserService = new userService(userModel)
 
@@ -57,7 +58,17 @@ router.post('/logout', (req, res) => {
     res.send('Sesión cerrada exitosamente')
   })
   
-
+  router.get('/:userId', async (req, res) => {
+    try {
+      const carrito = await carritoController.getCarritoByUserId(req.params.userId);
+      if (!carrito || carrito.productos.length === 0) {
+        return res.status(404).json({ message: 'Carrito no encontrado o vacío' });
+      }
+      return res.json(carrito);
+    } catch (error) {
+      return res.status(500).json({ message: 'Error al obtener el carrito', error });
+    }
+  });
 
 
 
