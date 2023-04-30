@@ -3,11 +3,14 @@ const app = express();
 const router = express.Router()
 const registroRouter = require('./registro')
 const authRouter = require('./authen')
-const userRouter = require('./userApi')
 const authMiddleware = require('../middleware/authorization')
+const userRouter = require('./userApi')
+const productRouter = require('./proudctApi')
 
 router.use('/login',authRouter)
 router.use('/registro', registroRouter)
+router.use('/product', productRouter);
+
 
 
 router.use(authMiddleware)
